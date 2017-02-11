@@ -37,9 +37,7 @@ for (var i = 0; i < json.length; i++) {
     .getCharacteristic(Characteristic.On)
     .on('set', function(value, callback) {
       console.log('Setting state to ' + value + ' for ' + obj.name + '.');
-      request('POST', 'http://localhost:5000/devices/save_state/' + obj.pk, {
-        json: { 'state': value ? 1 : 0 }
-      });
+      request('POST', 'http://localhost:5000/devices/save_state/' + obj.pk + '/' + (value ? '1' : '0'));
       callback();
     })
     .on('get', function(callback) {
